@@ -30,11 +30,11 @@ class Database extends \CodeIgniter\Database\Config
 	 * @var array
 	 */
 	public $default = [
-		'DSN'      => 'sqlite:database.sqlite',
+		'DSN'      => '',
 		'hostname' => 'localhost',
 		'username' => '',
 		'password' => '',
-		'database' => APPPATH . '/Database/db.sqlite',
+		'database' => APPPATH . '/Database/database.sqlite',
 		'DBDriver' => 'SQLite3',
 		'DBPrefix' => '',
 		'pConnect' => false,
