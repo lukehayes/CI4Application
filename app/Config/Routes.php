@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'PostsController::index');
-$routes->get('(:any)', 'PagesController::view/$1');
+$routes->get('/posts/(:segment)', 'PostsController::show/$1');
 
 /**
  * --------------------------------------------------------------------
