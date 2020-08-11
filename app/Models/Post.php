@@ -6,8 +6,10 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    public function all() 
-    {
-        return $this->findAll();
-    }
+    protected $primaryKey = 'id';
+
+    protected $returnType = 'object';
+
+    protected $allowedFields = ['title', 'content'];
+
 }
