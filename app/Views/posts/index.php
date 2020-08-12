@@ -5,7 +5,7 @@
     <?php foreach ($posts as $post): ?>
 
         <div class="post">
-            <h3><?php echo esc($post->title); ?></h3>
+            <h3><a href="/posts/<?php echo $post->id ?>"><?php echo esc($post->title); ?></a></h3>
             <p><?php echo esc($post->content); ?></p>
         </div>
     <?php endforeach; ?>
