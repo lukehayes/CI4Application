@@ -31,6 +31,8 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'PostsController::index', ['as' => 'home']);
+$routes->get('/posts/create', 'PostsController::create');
+$routes->post('/posts/create', 'PostsController::store');
 $routes->get('/posts/(:any)', 'PostsController::show/$1');
 
 /**
