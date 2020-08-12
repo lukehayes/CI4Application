@@ -9,4 +9,4 @@
 </head>
 <body>
 
-<p><a href="/">Header</a></p>
+<p><a href="<?php echo route_to('home') ?>">Header</a></p>
