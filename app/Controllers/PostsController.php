@@ -27,4 +27,29 @@ class PostsController extends BaseController
 		echo view('templates/footer');
 
     }
+
+    public function create()
+    {
+		echo view('templates/header');
+		echo view('posts/form', []);
+		echo view('templates/footer');
+    }
+
+    public function store()
+    {
+        $post = new Post();
+
+        if($this->request->getMethod() == 'post' && $this->validate([
+            'title' => 'required|min_length[3]|max_length[255]',
+            'content'  => 'required'
+        ])) {
+
+            $post->save([
+                'title' => $this->request->getPost('title'),
+                'content' => $this->request->getPost('content')
+            ]);
+        }
+
+        return redirect('home');
+    }
 }
