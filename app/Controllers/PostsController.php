@@ -31,20 +31,19 @@ class PostsController extends BaseController
     public function create()
     {
 
-        if ($this->request->getMethod() === 'post' && $this->validate([
-                'title' => 'required|min_length[3]|max_length[255]',
-                'content'  => 'required'
-            ]))
-        {
-            $model->save([
-                'title' => $this->request->getPost('title'),
-                'content'  => $this->request->getPost('content'),
-            ]);
+        $post = new Post();
 
-            //echo view('news/success');
+        if ($this->request->getMethod() === 'post') {
 
-        }
-        else
+            if ($this->validate($post->getValidationRules() )) {
+                $post->save([
+                    'title' => $this->request->getPost('title'),
+                    'content'  => $this->request->getPost('content'),
+                ]);
+            }else {
+            }
+
+        } else
         {
             echo view('templates/header', ['title' => 'Create a new post']);
             echo view('posts/create-form');
@@ -86,6 +85,7 @@ class PostsController extends BaseController
 
     public function update($id)
     {
+        dump("Updating");
         $model = new Post();
         $post = $model->find($id);
 
@@ -99,6 +99,7 @@ class PostsController extends BaseController
                 'content' => $this->request->getPost('content')
             ]);
         } else {
+            dump("NO");
             $this->edit($id);
         }
 
