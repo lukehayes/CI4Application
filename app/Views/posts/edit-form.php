@@ -1,7 +1,6 @@
 <?php echo\Config\Services::validation()->listErrors(); ?>
 
-<form action="/posts/update/<?php echo $post->id; ?>" method="put">
-    <?= csrf_field() ?>
+<form action="/posts/update/<?php echo $post->id; ?>" method="POST">
 
     <label for="title">Title</label>
     <input type="input" name="title" value="<?php echo $post->title; ?>"/><br />
