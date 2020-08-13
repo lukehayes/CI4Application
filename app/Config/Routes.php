@@ -32,14 +32,15 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'PostsController::index', ['as' => 'home']);
 
+
+$routes->post('/posts/update/(:num)','PostsController::update/$1');
+$routes->patch('/posts/update/(:num)','PostsController::update/$1');
+
 $routes->get('/posts/create', 'PostsController::create', ['as' => 'create-post']);
+$routes->post('/posts/create', 'PostsController::store');
 
-$routes->put('/posts/(:segment)',      'PostsController::update/$1');
-$routes->patch('/posts/(:segment)',    'PostsController::update/$1');
-//$routes->post('/posts/create', 'PostsController::store');
-
-$routes->get('/posts/(:segment)/edit', 'PostsController::edit/$1', []);
-$routes->get('/posts/(:segment)', 'PostsController::show/$1');
+$routes->get('/posts/edit/(:segment)', 'PostsController::edit/$1', ['as' => 'edit-post']);
+$routes->get('/posts/show/(:segment)', 'PostsController::show/$1');
 
 
 /**
