@@ -17,9 +17,9 @@ class Post extends Model
         'content'        => 'required',
     ];
 
-    //protected $validationMessages = [
-        //'email'        => [
-            //'is_unique' => 'Sorry. That email has already been taken. Please choose another.'
-        //]
-    //];
+    protected $validationMessages = [
+        'title'        => [
+            'required' => 'Sorry, this field must not be empty.'
+        ]
+    ];
 }
