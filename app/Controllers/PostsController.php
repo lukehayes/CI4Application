@@ -31,7 +31,7 @@ class PostsController extends BaseController
     public function create()
     {
 		echo view('templates/header');
-		echo view('posts/form', []);
+		echo view('posts/create-form');
 		echo view('templates/footer');
     }
 
