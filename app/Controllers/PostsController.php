@@ -30,26 +30,43 @@ class PostsController extends BaseController
 
     public function create()
     {
-		echo view('templates/header');
-		echo view('posts/create-form');
-		echo view('templates/footer');
+
+        if ($this->request->getMethod() === 'post' && $this->validate([
+                'title' => 'required|min_length[3]|max_length[255]',
+                'content'  => 'required'
+            ]))
+        {
+            $model->save([
+                'title' => $this->request->getPost('title'),
+                'content'  => $this->request->getPost('content'),
+            ]);
+
+            //echo view('news/success');
+
+        }
+        else
+        {
+            echo view('templates/header', ['title' => 'Create a new post']);
+            echo view('posts/create-form');
+            echo view('templates/footer');
+        }
+
+
     }
 
     public function store()
     {
         $post = new Post();
 
-        if($this->request->getMethod() == 'post' && $this->validate([
-            'title' => 'required|min_length[3]|max_length[255]',
-            'content'  => 'required'
-        ])) {
-
+        if($this->request->getMethod() == 'post' && $this->validate([])) {
             $post->save([
                 'title' => $this->request->getPost('title'),
                 'content' => $this->request->getPost('content')
             ]);
+        } else {
+            $this->create();
         }
 
-        return redirect('home');
+        //return redirect('create-post');
     }
 }
