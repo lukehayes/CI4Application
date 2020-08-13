@@ -9,4 +9,8 @@
 </head>
 <body>
 
-<p><a href="<?php echo route_to('home') ?>">Header</a></p>
+
+<nav>
+    <p><a href="<?php echo route_to('home') ?>">Header</a></p>
+    <p><a href="<?php echo route_to('create-post') ?>">Create</a></p>
+</nav>
