@@ -1,6 +1,6 @@
 <h2><?= esc($title); ?></h2>
 
-<?= \Config\Services::validation()->listErrors(); ?>
+<?php echo\Config\Services::validation()->listErrors(); ?>
 
 <form action="/posts/create" method="post">
     <?= csrf_field() ?>
