@@ -5,5 +5,8 @@
         <p><?php echo esc($post->content); ?></p>
     </div>
 
+    <a href="/posts/<?php echo $post->id ?>/edit">edit post</a>
+
+
 </div>
 
