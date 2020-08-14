@@ -14,12 +14,12 @@ class Post extends Model
 
     protected $validationRules    = [
         'title'     => 'required|alpha_numeric_space|min_length[3]',
-        'content'        => 'required',
+        'content'        => 'required|min_length[10]',
     ];
 
     protected $validationMessages = [
         'title'        => [
-            'required' => 'Sorry, this field must not be empty.'
+            'required' => 'Sorry, this field must not be empty.',
         ]
     ];
 }
