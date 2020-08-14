@@ -1,4 +1,3 @@
-<h2><?= esc($title); ?></h2>
 
 <?php echo\Config\Services::validation()->listErrors(); ?>
 
