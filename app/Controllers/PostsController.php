@@ -31,25 +31,19 @@ class PostsController extends BaseController
     public function create()
     {
 
-        $post = new Post();
+        $postModel = new Post();
+        $rules = $postModel->validationRules;
 
-        if ($this->request->getMethod() === 'post') {
-
-            if ($this->validate($post->getValidationRules() )) {
-                $post->save([
-                    'title' => $this->request->getPost('title'),
-                    'content'  => $this->request->getPost('content'),
-                ]);
-            }else {
-            }
-
-        } else
-        {
+        if($this->request->getMethod() == 'post' && $this->validate($rules)) {
+            $postModel->save([
+                'title' => $this->request->getPost('title'),
+                'content' => $this->request->getPost('content')
+            ]);
+        } else {
             echo view('templates/header', ['title' => 'Create a new post']);
             echo view('posts/create-form');
             echo view('templates/footer');
         }
-
 
     }
 
@@ -69,15 +63,18 @@ class PostsController extends BaseController
 
     public function store()
     {
-        $post = new Post();
+        $postModel = new Post();
+        $rules = $postModel->validationRules;
 
-        if($this->request->getMethod() == 'post' && $this->validate([])) {
-            $post->save([
+        if($this->request->getMethod() == 'post' && $this->validate($rules)) {
+            $postModel->save([
                 'title' => $this->request->getPost('title'),
                 'content' => $this->request->getPost('content')
             ]);
         } else {
-            $this->create();
+            echo view('templates/header');
+            echo view('posts/edit-form', ['validator' => $this->validator ]);
+            echo view('templates/footer');
         }
 
         //return redirect('create-post');
@@ -85,24 +82,28 @@ class PostsController extends BaseController
 
     public function update($id)
     {
-        dump("Updating");
+        $postModel = new Post();
+        $rules = $postModel->validationRules;
         $model = new Post();
-        $post = $model->find($id);
+        $post = $postModel->find($id);
+
 
         if( is_null($post) ) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        if($this->request->getMethod() == 'post' && $this->validate([])) {
-            $post->update($id, [
+        if($this->request->getMethod() == 'post' && $this->validate($rules)) {
+            $postModel->update($id, [
                 'title' => $this->request->getPost('title'),
                 'content' => $this->request->getPost('content')
             ]);
+
+            return redirect('home');
+
         } else {
-            dump("NO");
+
             $this->edit($id);
         }
 
-        //return redirect('create-post');
     }
 }
