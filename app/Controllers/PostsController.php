@@ -73,7 +73,7 @@ class PostsController extends BaseController
             ]);
         } else {
             echo view('templates/header');
-            echo view('posts/edit-form', ['validator' => $this->validator ]);
+            echo view('posts/create-form', ['validator' => $this->validator ]);
             echo view('templates/footer');
         }
 
